@@ -13,12 +13,13 @@
 </head>
 
 <body>
-
 	<button id="lock" type="button" onclick="vid.play();vid.pause();this.remove();">please click</button>
 
 	<center>
 		<video id="vid" height="80%" width="100%" src="libs/vids/s/duf.mp4" controls playsinline></video>
 	  </center>
+
+	
 </body>
 <input type="range" id='delay' class='delay'  min="0" max="1000" value="0" onchange=save(this.value)>
 <span id='delayStr'>0</span>
