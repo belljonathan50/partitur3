@@ -1,0 +1,49 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<title>Missa Alto</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="fonts/fonts.css" rel="stylesheet">
+	<script src="lib/libINScore.js"></script>
+	<script src="lib/inscoreview.js"></script>
+	<script src="lib/inscoreglue.js"></script>
+	<script src="delay.js"></script>
+	<link href="missa.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="inscore" id="scene">
+
+<pre>
+
+	/ITL/scene/score set video "dom/dufay2A.mp4";
+	/ITL/scene/score width 1.9;
+	/ITL/scene/score watch PLAY (
+		/ITL/scene/javascript run "play(delay)"
+	);
+	/ITL/scene/score watch STOP (
+		/ITL/scene/javascript run "stop(delay)"
+	);
+	/ITL/scene/score watch PAUSE (
+		/ITL/scene/javascript run "pause(delay)"
+	);
+
+	/ITL/scene/click set txt "Click me twice";
+	/ITL/scene/click fontSize 32;
+	/ITL/scene/click watch mouseDown (
+		/ITL/scene/click del
+	);
+
+</pre>
+</div>
+<input type="range" id='delay' class="delay" min="0" max="1000" value="0" onchange=save(this.value)>
+<span id='delayStr'>0</span>
+</body>
+<script>
+	document.getElementById ('delay').value = delay;
+	document.getElementById('delayStr').innerText = delay;
+</script>
+<script src="connect.js"></script>
+<script src="comm.js"></script>
+</html>
