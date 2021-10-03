@@ -2,7 +2,9 @@ const express     = require('express');
 var timesyncServer = require('timesync/server');
 const app         = express();
 const fs = require('fs');
+// var os = require('os');
 const editJsonFile = require("edit-json-file");
+
 
 
 const router = express.Router();
@@ -14,6 +16,9 @@ const serveStatic = require('serve-static');
 const basicAuth   = require('basic-auth-connect');
 const user = process.env.USER;
 const pass = process.env.PASS;
+// var networkInterfaces = os.networkInterfaces();
+// console.log(networkInterfaces);
+
 
 let connects = [];
 let file = editJsonFile(`${__dirname}/public/libs/DistributedState/state.json`);
