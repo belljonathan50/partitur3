@@ -2,7 +2,7 @@ const express     = require('express');
 var timesyncServer = require('timesync/server');
 const app         = express();
 const fs = require('fs');
-// var os = require('os');
+var os = require('os');
 const editJsonFile = require("edit-json-file");
 
 
