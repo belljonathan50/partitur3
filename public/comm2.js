@@ -3,14 +3,25 @@
 // var url = "wss://partitur.herokuapp.com/";
 // var url = "ws://192.168.0.8:3000";
 // var url = "ws://192.168.1.178:3000";
-var url = "ws://192.168.0.100:3000";
+// var url = "ws://192.168.0.100:3000";
 // var url = "ws://192.168.0.101:3000";
 
 
-var ws = new WebSocket (url);
+// var ws = new WebSocket (url);
 // console.log ("ws", ws);
-var vid = document.getElementById('vid');
+// var vid = document.getElementById('vid');
   
+
+
+(function() {
+    var HOST = location.origin.replace(/^http/, 'ws');
+    var ws = new WebSocket(HOST);
+    
+    var form = document.querySelector('.form');
+  
+  
+
+
 
 ws.onmessage = function(msg) {
     var response = msg.data;
@@ -106,5 +117,7 @@ function send (msg) {
 //                  }
 
 
+  
+}());
 
 
