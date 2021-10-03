@@ -1,0 +1,9 @@
+
+/ITL/scene watch keyDown " " ( 
+	/ITL/scene push,
+	/ITL/scene event PLAY,
+	/ITL/scene watch keyDown " " ( 
+		/ITL/scene event PAUSE,
+		/ITL/scene pop
+	)
+);

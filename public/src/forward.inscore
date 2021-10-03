@@ -1,0 +1,33 @@
+
+alpha = 120;
+
+/ITL/scene/forward set txt Forward;
+/ITL/scene/forwardC set txt Clients;
+/ITL/scene/forward* fontSize 20;
+/ITL/scene/forward* alpha $alpha;
+/ITL/scene/forward* x -0.8;
+/ITL/scene/forward y -0.88;
+/ITL/scene/forwardC y -0.80;
+/ITL/scene/forward* watch mouseEnter (/ITL/scene/$self alpha 255);
+/ITL/scene/forward* watch mouseLeave (/ITL/scene/$self alpha $alpha);
+/ITL/scene/forwardC watch mouseDown ( /ITL get clients );
+
+/ITL/scene/forward watch mouseDown (
+	/ITL/scene/forward push,
+	/ITL/log show 1,
+	/ITL forward  "http://localhost:7200",
+	/ITL/scene/forward set txt 'Stop forwarding',
+	/ITL/scene/forward watch mouseDown (
+		/ITL/scene/forward set txt Forward,
+		/ITL forward,
+		/ITL/scene/forward pop
+	)
+);
+
+
+/ITL/filter reject "/ITL" "/ITL/log"  "/ITL/scene/javascript" "/ITL/scene/pos"  "/ITL/scene" "/ITL/scene/forward*" "/ITL/scene/playPanel/*" xorigin yorigin scale load ddate quit;
+
+__END__
+
+/ITL/filter reject '*';
+/ITL/filter accept play;

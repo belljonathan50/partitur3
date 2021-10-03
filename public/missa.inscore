@@ -1,0 +1,64 @@
+
+/ITL/scene/* del;
+/ITL/log show 1;
+
+
+
+/ITL/scene watch PLAYPANELREADY ( /ITL/scene/playPanel y 0 );
+
+/ITL/scene watch PLAY ( 	
+	/ITL/scene/score play 1,
+	/ITL/scene/pos tempo 60
+);
+
+/ITL/scene watch STOP (
+	/ITL/scene/pos tempo 0,
+	/ITL/scene/pos date 0,
+	/ITL/scene/score play 0,
+	/ITL/scene/score vdate 0
+);
+
+/ITL/scene watch PAUSE (
+	/ITL/scene/score play 0,
+	/ITL/scene/pos tempo 0
+);
+
+
+/ITL/scene watch END ( /ITL/scene/playPanel/stop event mouseDown 0 0 );
+
+/ITL load "src/playControl.inscore";
+/ITL load "src/forward.inscore";
+/ITL load "src/keyboard.inscore";
+/ITL load "src/timeline.inscore";
+
+
+__END__
+
+/ITL/scene/time set rect 1 1;
+/ITL/scene/time show 0;
+/ITL/scene/time watch timeLeave 0 4 1 4 (
+	/ITL/scene/time date 0,
+	/ITL/scene/score play 1,
+	/ITL/scene/javascript run 'sync()'
+);
+
+<? javascript
+var time = 10;
+function sync() {
+	time += 1000;
+	return "/ITL/scene/score vdate " + time + "; /ITL/log write time " + time + ";";
+}
+function reset() {
+	time = 10;
+}
+
+?>
+
+__END__
+
+/ITL/scene/score vdate 12000;
+/ITL/scene/score vdate 1000;
+/ITL/scene/score get vdate;
+/ITL/scene/score rate 2;
+/ITL/scene/score rate 1;
+

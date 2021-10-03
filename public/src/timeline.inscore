@@ -1,0 +1,36 @@
+#/ITL/scene/* del;
+
+<? javascript
+function toto (date) {
+	return "/ITL/log write toto '" + date + "';";
+}
+?>
+
+/ITL/scene/tl set rect 1.6 0.07;
+/ITL/scene/tl penWidth 1;
+/ITL/scene/tl color white;
+/ITL/scene/tl y 0.5;
+/ITL/scene/tl duration 77 4;
+
+w = 0.07;
+/ITL/scene/pos set ellipse $w $w;
+/ITL/scene/pos color red;
+/ITL/scene/sync pos tl v;
+
+/ITL/scene/tl watch mouseDown (
+#	/ITL/scene/pos date '$date',
+#	/ITL/scene/score vdate '$date',
+#	/ITL/log write JS '$date%f',
+	/ITL/scene/javascript run "toto($date%f)"
+);
+
+/ITL/scene/tl watch mouseMove (
+	/ITL/scene/pos date '$date',
+	/ITL/scene/score vdate '$date'
+);
+
+
+
+__END__
+
+/ITL/scene get rootPath;

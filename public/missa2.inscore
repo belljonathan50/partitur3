@@ -1,0 +1,31 @@
+
+/ITL/scene/* del;
+/ITL/log show 1;
+
+
+
+/ITL/scene watch PLAYPANELREADY ( /ITL/scene/playPanel y 0 );
+
+/ITL/scene watch PLAY ( 
+	/ITL/scene/score event PLAY,
+	/ITL/scene/pos tempo 60
+);
+
+/ITL/scene watch STOP (
+	/ITL/scene/pos tempo 0,
+	/ITL/scene/pos date 0,
+	/ITL/scene/score event STOP
+);
+
+/ITL/scene watch PAUSE (
+	/ITL/scene/pos tempo 0,
+	/ITL/scene/score event PAUSE
+);
+
+
+/ITL/scene watch END ( /ITL/scene/playPanel/stop event mouseDown 0 0 );
+
+/ITL load "src/playControl.inscore";
+/ITL load "src/forward.inscore";
+/ITL load "src/keyboard.inscore";
+/ITL load "src/timeline.inscore";
